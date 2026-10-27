@@ -1,0 +1,1 @@
+<?php session_start(); require __DIR__.'/config.php'; if(empty($_SESSION['user'])){header('Location: auth.php');exit;} $id=(int)($_GET['id']??0);$st=db()->prepare("UPDATE orders SET status='cancelado' WHERE id=? AND user_id=? AND status='nuevo'");$st->execute([$id,$_SESSION['user']['id']]);header('Location: account.php');exit;
